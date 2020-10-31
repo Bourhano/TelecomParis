@@ -1,0 +1,1160 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Mini-Projet\_BourhanDernayka}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \section{Mini-Projet de Statistiques}\label{mini-projet-de-statistiques}
+
+\subsection{\texorpdfstring{\[Three\ Mile\ Island \]}{Three\textbackslash{} Mile\textbackslash{} Island }}\label{three-mile-island}
+
+\subsubsection{\texorpdfstring{\emph{Préparé
+par:}}{Préparé par:}}\label{pruxe9paruxe9-par}
+
+\begin{verbatim}
+Bourhan Dernayka
+\end{verbatim}
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\subsubsection{\texorpdfstring{\[EXERCICE\ 1\]}{EXERCICE\textbackslash{} 1}}\label{exercice-1}
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\paragraph{EX 1.1 Data Acquiring}\label{ex-1.1-data-acquiring}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}32}]:} \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+         
+         \PY{n}{filename}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{NuclearPowerAccidents2016}\PY{l+s+s2}{\PYZdq{}}
+         \PY{n}{na\PYZus{}values} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{fields} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Cost (millions 2013US\PYZdl{})}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{n}{filename} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{sep}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{,}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{usecols}\PY{o}{=}\PY{n}{fields}\PY{p}{,} \PY{n}{low\PYZus{}memory} \PY{o}{=} \PY{k+kc}{False}\PY{p}{,} \PY{n}{na\PYZus{}values}\PY{o}{=}\PY{n}{na\PYZus{}values}\PY{p}{)}
+         \PY{n}{df} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{dropna}\PY{p}{(}\PY{p}{)}
+         \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{to\PYZus{}datetime}\PY{p}{(}\PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)} \PY{c+c1}{\PYZsh{} format = \PYZsq{}\PYZpc{}d/\PYZpc{}m/\PYZpc{}Y\PYZsq{}}
+         \PY{n}{df} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{set\PYZus{}index}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{drop}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+         \PY{n}{df} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{sort\PYZus{}index}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}33}]:} \PY{n+nb}{len}\PY{p}{(}\PY{n}{df}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}33}]:} 175
+\end{Verbatim}
+            
+    La date de l'accident est: \textgreater{} March 28, 1979
+
+ce qui indique qu'on doit enlever tout les données enregistrées depuis
+la date 1979-03-28
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}34}]:} \PY{n}{endDate} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{1979\PYZhy{}03\PYZhy{}27}\PY{l+s+s2}{\PYZdq{}}
+         \PY{n}{endDate} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{to\PYZus{}datetime}\PY{p}{(}\PY{n}{endDate}\PY{p}{)}
+         \PY{n}{df}\PY{o}{=}\PY{n}{df}\PY{p}{[}\PY{p}{:}\PY{n}{endDate}\PY{p}{]}
+         \PY{n}{costs} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Cost (millions 2013US\PYZdl{})}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}35}]:} \PY{n}{n}\PY{o}{=}\PY{n+nb}{len}\PY{p}{(}\PY{n}{df}\PY{p}{)}
+         \PY{n}{n}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}35}]:} 55
+\end{Verbatim}
+            
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\paragraph{Ex 1.2 Normal QQ-plots}\label{ex-1.2-normal-qq-plots}
+
+\begin{quote}
+partie a
+\end{quote}
+
+    \(X\) suit le loi normale de moyenne \(\mu\) et de variance
+\(\sigma^2\), donc \[ X \sim N (\mu, \sigma^2)\] Posons \$ Z =
+\frac{X - \mu}{\sqrt{\sigma^2}}\$ une variable aléatoire qui suit la loi
+Normale (Gaussienne) centrale, et reduite.donc,
+\[ Z = \frac{X - \mu}{\sqrt{\sigma^2}} \sim N (0, 1)\] On deduit que
+\[ X = \mu + \sqrt{\sigma^2} . Z\] Or, \$ X \sim N (\mu, \sigma\^{}2)\$
+alors sa \(p\)-quantile s'écrit ( pour \(p \in ]0,1[\) ):
+\[ F^{-1}(p;\mu, \sigma^2) = \mu + \sigma.\Phi^{-1}(p)\] et \$ Z \sim N
+(0, 1)\$ alors sa \(p\)-quantile s'écrit:
+\[ F^{-1}(p;0, 1) = 0 + 1.\Phi^{-1}(p) = \Phi^{-1}(p)\] On obtient donc:
+\[F^{-1}(p;\mu, \sigma^2) = \mu + \sqrt{\sigma^2} . F^{-1}(p;0, 1)\]
+CQFD
+
+    \begin{quote}
+partie b
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}36}]:} \PY{k+kn}{from} \PY{n+nn}{scipy} \PY{k}{import} \PY{n}{stats}
+         \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+         \PY{k+kn}{import} \PY{n+nn}{seaborn} \PY{k}{as} \PY{n+nn}{sns}
+         \PY{n}{sns}\PY{o}{.}\PY{n}{set}\PY{p}{(}\PY{n}{font\PYZus{}scale}\PY{o}{=}\PY{l+m+mf}{1.5}\PY{p}{,} \PY{n}{style}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{whitegrid}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{resNorm} \PY{o}{=} \PY{n}{stats}\PY{o}{.}\PY{n}{probplot}\PY{p}{(}\PY{n}{costs}\PY{p}{,}\PY{n}{dist} \PY{o}{=} \PY{n}{stats}\PY{o}{.}\PY{n}{distributions}\PY{o}{.}\PY{n}{norm}\PY{p}{,} \PY{n}{plot}\PY{o}{=}\PY{n}{plt}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_11_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\paragraph{Ex 1.3 Exponential
+QQ-plots}\label{ex-1.3-exponential-qq-plots}
+
+    \begin{quote}
+partie a
+\end{quote}
+
+    \(X\) suit le loi exponentielle à paramètre \(\lambda\),
+\(X \sim \varepsilon\ (\lambda)\). Alors, sa densité de probabilité
+sera:\[f(x;\lambda)=\lambda e^{-\lambda x},\ x\geq0\] D'où sa fonction
+de répartition
+:\[F(x;\lambda) = \int_0^x \lambda e^{-\lambda t}dt = 1 - e^{-\lambda.x} \]
+En calculant l'inverse de \(F(x;\lambda)\), on obtient la \(p\)-quantile
+de \(X\). Elle s'écrit :
+\[y = 1 - e^{-\lambda.x}\\- e^{-\lambda.x}= y - 1 \\e^{-\lambda.x}=1-y\\-\lambda.x=\ln(1-y)\\x=-\frac{1}{\lambda}{\ln(1-y)}\]
+En remplacant \(x\) par \(F^{-1}\) et \(y\) par \(p\) avex
+\(p \in ]0,1[\) : \[F^{-1}(p;\lambda) = -\frac{1}{\lambda}{\ln(1-p)}\]
+Pour une variable aleatoire qui suit la loi exponentielle normalisée:
+\(Y \sim exp (1)\), sa \(p\)-quantile s'écrit:
+\[F^{-1}(p;1) = -\frac{1}{1}{\ln(1-p)} = -\ln(1-p)\] On obtient donc:
+\[F^{-1}(p;\lambda) = \frac{1}{\lambda}{F^{-1}(p;1)}\] CQFD
+
+    \begin{quote}
+partie b
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}37}]:} \PY{n}{resExpon} \PY{o}{=} \PY{n}{stats}\PY{o}{.}\PY{n}{probplot}\PY{p}{(}\PY{n}{costs}\PY{p}{,}\PY{n}{dist} \PY{o}{=} \PY{n}{stats}\PY{o}{.}\PY{n}{distributions}\PY{o}{.}\PY{n}{expon}\PY{p}{,} \PY{n}{plot}\PY{o}{=}\PY{n}{plt}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_16_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\paragraph{Ex 1.4 Conclusion}\label{ex-1.4-conclusion}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}38}]:} \PY{n}{f} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}
+         \PY{n}{ax1} \PY{o}{=} \PY{n}{f}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{121}\PY{p}{)}
+         \PY{n}{ax2} \PY{o}{=} \PY{n}{f}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{122}\PY{p}{)}
+         \PY{n}{resNorm} \PY{o}{=} \PY{n}{stats}\PY{o}{.}\PY{n}{probplot}\PY{p}{(}\PY{n}{costs}\PY{p}{,}\PY{n}{dist} \PY{o}{=} \PY{n}{stats}\PY{o}{.}\PY{n}{distributions}\PY{o}{.}\PY{n}{norm}\PY{p}{,} \PY{n}{plot}\PY{o}{=}\PY{n}{ax1}\PY{p}{)}
+         \PY{n}{resExpon} \PY{o}{=} \PY{n}{stats}\PY{o}{.}\PY{n}{probplot}\PY{p}{(}\PY{n}{costs}\PY{p}{,}\PY{n}{dist} \PY{o}{=} \PY{n}{stats}\PY{o}{.}\PY{n}{distributions}\PY{o}{.}\PY{n}{expon}\PY{p}{,} \PY{n}{plot}\PY{o}{=}\PY{n}{ax2}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_18_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    D'après la definition des QQ-plots et leurs utilités à comparer la
+distribution de deux variables aleatoires en traçant leurs quantiles,
+l'une en fonction de lautre (dans notre cas, la distribution théorique
+contre celle obtenue actuellement), on peut déduire que la distribution
+exponentielle semble être plus plausible que celle du modèle normale.
+
+On peut aisement voir dans la première figure au-dessus que les points
+ne sont pas assez lineaire, en indiquant un peu une exponentiation par
+rapport à la droite représentant la loi Normale. (c'était alors
+previsible que les coûts suivent une loi exponentielle)
+
+Par contre, pour le diagramme Qentile-Qentile de la loi exponentielle
+contre les coûts des accidents avant Three Mile Island, on peut remarqué
+une colinearité entre les distributions, indiquant que les coûts sont
+plus probablement distribués exponentiellement.
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\subsubsection{\texorpdfstring{\[EXERCICE\ 2\]}{EXERCICE\textbackslash{} 2}}\label{exercice-2}
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\subsubsection{Ex 2.1}\label{ex-2.1}
+
+    D'après la donnée, \(\mathbb{P}_\lambda(X_1>x) = \exp^{-\lambda x}\)
+pour \(x\geq0\), et 1 sinon.
+
+Alors la fonction de repartition de \(X_1\) sera :
+\[F(X_1) = \mathbb{P}_\lambda(X_1\leq x) = 1 - \exp^{-\lambda x}\]
+Alors, on calcule la densité de probabilité
+\(\mathbb{P}(X_1,\lambda)=\ f(X_1,\lambda)\) en dérivant par rapport à
+X\_1:
+\[  f(X_1,\lambda) =\ \frac{\partial F(X_1)}{\partial X_1} = \frac{\partial (1 - \exp^{-\lambda X_1})}{\partial X_1}=\lambda \exp^{-\lambda X_1}\]
+Or on a considéré les accidents indépendants et identiquements
+distribués, alors:
+\[\mathbb{P}(X,\lambda) = \prod_{i=1}^n\mathbb{P}(X_i,\lambda)\] Donc,
+la densité de probabilité du vecteur \(X\) est:
+\[\mathbb{P}(X,\lambda) = \lambda^n \exp^{-\lambda \sum_{i=1}^nX_i}\]
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+    Pour trouver l'estimateur de maximum vraisemblance de \(\lambda\), on
+pose l'estimateur \(\widehat{\theta}_{MV}(X)= \widehat{\lambda}_n\) qui
+verifie la relation:
+\[\widehat{\theta}_{MV}(X) = \arg \min_{t \in \Theta}{M(X,t)}\] où
+\(M(X,t)\) est un contraste donné par :
+\[M(X,t)=- \log{\mathbb{P}(X,t)} = -\log{f(X,t)}\] Donc, \$
+\widehat{\lambda}\_n\$ sera la valeur qui minimise \(M(X,t)\).
+
+Resolvons l'equation \(\frac{\partial M(X,t)}{\partial t} = 0\)
+\[\frac{\partial (-\log{\mathbb{P}(X,t))}}{\partial t} = 0\]
+\[\frac{\partial [-\log{(t^n\ \exp^{-t \sum_{i=1}^n X_i} })]}{\partial t} = 0\]
+\[\frac{n t^{n-1}\exp^{-t \sum_{i=1}^n X_i} - t^n \sum_{i=1}^n X_i \exp^{-t \sum_{i=1}^n X_i}}
+{t^n\ \exp^{-t \sum_{i=1}^n X_i}} 
+= 0 \] En simplifiant, on obtient: \[n t^{-1} -\sum_{i=1}^n X_i=0\] D'où
+l'estimateur de max vraisemblance sera:
+\[  \widehat{\lambda}_n=\widehat{t}=\frac{n}{\sum_{i=1}^n X_i}\]
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\subsubsection{Ex 2.2}\label{ex-2.2}
+
+    Calcule de \(\lambda_n\) :
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}39}]:} \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+         \PY{n}{totalCases} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{df}\PY{p}{)} \PY{c+c1}{\PYZsh{}n}
+         \PY{n}{totalCosts} \PY{o}{=} \PY{n}{costs}
+         \PY{n}{lambdaN} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{costs}\PY{p}{)}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{totalCosts}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{La valeure calculée de \PYZdl{}lambda\PYZus{}n\PYZdl{} est}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{lambdaN}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+La valeure calculée de \$lambda\_n\$ est 0.0013767725947156965
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}40}]:} \PY{k+kn}{from} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{stats} \PY{k}{import} \PY{n}{expon}
+         \PY{n}{fig}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n}{moyenne} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{/}\PY{n}{lambdaN}
+         \PY{n}{x} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{n}{expon}\PY{o}{.}\PY{n}{ppf}\PY{p}{(}\PY{l+m+mf}{0.01}\PY{p}{,}\PY{n}{scale}\PY{o}{=}\PY{n}{moyenne}\PY{p}{)}\PY{p}{,} \PY{n}{expon}\PY{o}{.}\PY{n}{ppf}\PY{p}{(}\PY{o}{.}\PY{l+m+mi}{99}\PY{p}{,}\PY{n}{scale}\PY{o}{=}\PY{n}{moyenne}\PY{p}{)}\PY{p}{,}\PY{l+m+mi}{100}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{expon}\PY{o}{.}\PY{n}{pdf}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{n}{moyenne}\PY{p}{)}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{lw}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.6}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Densité de la loi exp à lambda\PYZus{}n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{entries}\PY{p}{,} \PY{n}{bin\PYZus{}edges}\PY{p}{,} \PY{n}{c}\PY{o}{=}\PY{n}{ax}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{costs}\PY{p}{,} \PY{n}{density}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{histtype}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{stepfilled}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                                       \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.8}\PY{p}{,}\PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Cout (millions 2013US\PYZdl{})}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                                      \PY{n}{bins} \PY{o}{=} \PY{l+m+mi}{17}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}print(sum(entries * np.diff(bin\PYZus{}edges)))}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{loc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{best}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{frameon}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_27_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\paragraph{Ex 2.3}\label{ex-2.3}
+
+    Le modèle est regulier. Grandeur d'intérêt :
+\(g_1(\lambda)=\frac{1}{\lambda}\); Statistique d'étude :
+\(T_1(X)= \frac{1}{n}\sum_{i=1}^nX_i\)
+
+Pour que \(T_1(X)\) soit un estimateur efficace pour \(g_1(\lambda)\),
+il doit verifier ces deux conditions: \textgreater{}1- \(T_1(X)\) est
+sans biais ==\textgreater{} \(b(g_1,T_1) = 0\)
+
+\begin{quote}
+2- la variance de \(T_1(X)\) doit atteindre la borne de Cramer-Rao
+\end{quote}
+
+    1- Pour la première condition: \[
+    b(g_1,T_1) = \mathbb{E}_\lambda[T_1(X)-g_1(\lambda)] = \mathbb{E}_\lambda[\frac{1}{n}\sum_{i=1}^nX_i - \frac{1}{\lambda}]\\
+    b(g_1,T_1) = \frac{1}{n}\mathbb{E}_\lambda[\sum_{i=1}^nX_i] - \frac{1}{\lambda}\\
+    b(g_1,T_1) = \frac{1}{n}\sum_{i=1}^n\mathbb{E}_\lambda[X_i] - \frac{1}{\lambda}\\
+\] Or, les les accidents indépendants et identiquements distribués,
+alors \(X_i \stackrel{i.i.d.}{\sim} \varepsilon\ (\lambda)\), et
+\(\mathbb{E}_\lambda[X_i] = 1/\lambda\), d'où : \[
+     b(g_1,T_1) = \frac{1}{n}\sum_{i=1}^n\frac{1}{\lambda} - \frac{1}{\lambda} = 0
+\]
+
+    2- Pour la deuxième condition, on doit calculé la borne de Cramer-Rao,
+qui est une borne inférieure de la variance de l'estimateur \(T_1\), cad
+\(\mathbb{V}ar_\lambda(T_1) \geq borneCR\).
+
+Au debut,
+\[borneCR = \frac{[g_1'(\lambda)]^2}{I(\lambda)} = \frac{[-1/\lambda^2]^2}{I(\lambda)} = \frac{\frac{1}{\lambda^4}}{I(\lambda)}\]
+
+où \(I(\lambda)\) est l'information de Fisher contenu dans la variable
+d'étude. Dans notre cas c'est le vercteur \(X\) de dimension \(n\). Or,
+l'information de Fisher est additive, donc \$I(\lambda) = n
+I\_1(\lambda) \$
+
+Elle est donnée par:
+\(I(\lambda) := \mathbb{E}_\lambda[\ (\frac{\partial \log{\mathbb{P}(X,\lambda)}} {\partial\lambda})^2\ ]\)
+
+Or, \(\mathbb{P}(X,\lambda)\) est infiniment differentiable (il suffit
+deux) par rapport à \(\lambda\) (loi exponentielle), alors : \[
+I_1(\lambda) = - \mathbb{E}_\lambda[\ \frac{\partial^2 \log{\mathbb{P}(x,\lambda)}} {\partial\lambda^2}]\\
+    I_1(\lambda) = - \mathbb{E}_\lambda[\ \frac{\partial^2 \log(\lambda\exp^{-\lambda x})} {\partial\lambda^2}]= - \mathbb{E}_\lambda[\ \frac{\partial^2 (\log\lambda-\lambda x)} {\partial\lambda^2}]\\
+            I_1(\lambda) = - \mathbb{E}_\lambda[\ \frac{\partial (1/\lambda - x)} {\partial\lambda}]= - \mathbb{E}_\lambda[-1/\lambda^2 - 0]\\
+                I_1(\lambda) = \frac{1}{\lambda^2}
+\] Donc, \$ I(\lambda)= \frac{n}{\lambda^2}\$
+
+D'où la borne de Cramer Rao sera:
+\[borneCR = \frac{\frac{1}{\lambda^4}}{\frac{n}{\lambda^2}} = \frac{1}{n\lambda^2}\]
+
+Cherchons la variance de l'estimateur \(g_1(\lambda)\):
+
+\[\mathbb{V}ar_\lambda(T_1) = \mathbb{V}ar_\lambda(\frac{1}{n}\sum_{i=1}^nX_i) = \frac{1}{n^2}\mathbb{V}ar_\lambda(\sum_{i=1}^nX_i)\]
+
+Or, les les accidents indépendants et identiquements distribués, alors :
+\(\mathbb{V}ar_\lambda(\sum_{i=1}^nX_i)= \sum_{i=1}^n\mathbb{V}ar_\lambda [X_i]\).
+Donc,
+
+\[
+\mathbb{V}ar_\lambda(T_1) = \frac{1}{n^2}\sum_{i=1}^n\mathbb{V}ar_\lambda [X_i] = \frac{1}{n^2}\sum_{i=1}^n\frac{1}{\lambda^2} =
+\frac{1}{n^2}\frac{n}{\lambda^2}\\ \mathbb{V}ar_\lambda(T_1) = \frac{1}{n\lambda^2} = borneCR
+\]
+
+Donc, \(T_1(X)\) vérifie les deux conditions d'efficacité et il est
+efficace.
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\paragraph{Ex 2.4}\label{ex-2.4}
+
+    Calcul de \(g_1\):
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}41}]:} \PY{n}{T1} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{totalCosts}\PY{p}{)}\PY{o}{/}\PY{n}{totalCases}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{L}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{estimation de g1 par T1 sur l}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{échantillon donné est}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZob{}:.3f\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{T1}\PY{p}{)}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{million\PYZdl{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+L'estimation de g1 par T1 sur l'échantillon donné est 726.336 million\$
+
+    \end{Verbatim}
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\paragraph{Ex 2.5}\label{ex-2.5}
+
+    Le nouveau estimateur est: \$\tilde{T}\_\{1,\eta\}(X) = \eta T\_1(X) \$
+
+Cherchons son risque quadratique:
+\(R(\lambda,\tilde{T}_{1,\eta}) = b^2_\lambda(\tilde{T}_{1,\eta}) +\mathbb{V}ar_\lambda(\tilde{T}_{1,\eta})\)
+
+tel que
+\[b_\lambda(g_1,\tilde{T}_{1,\eta}) = \mathbb{E}_\lambda[\tilde{T}_{1,\eta}-g_1(\lambda)] = \mathbb{E}_\lambda[\frac{\eta}{n}\sum_{i=1}^nX_i - \frac{1}{\lambda}]\\
+    b(g_1,\tilde{T}_{1,\eta}) = \frac{\eta}{n}\mathbb{E}_\lambda[\sum_{i=1}^nX_i] - \frac{1}{\lambda}= \frac{\eta}{n}\sum_{i=1}^n\mathbb{E}_\lambda[X_i] - \frac{1}{\lambda}\\
+    b(g_1,\tilde{T}_{1,\eta}) = \frac{\eta}{n}\sum_{i=1}^n\frac{1}{\lambda} - \frac{1}{\lambda}= \frac{\eta}{\lambda} - \frac{1}{\lambda}\\
+    b(g_1,\tilde{T}_{1,\eta}) = \frac{\eta-1}{\lambda}
+\]
+
+et que
+
+\[\mathbb{V}ar_\lambda(\tilde{T}_{1,\eta}) = \mathbb{V}ar_\lambda(\frac{\eta}{n}\sum_{i=1}^nX_i) = \frac{\eta^2}{n^2}\mathbb{V}ar_\lambda(\sum_{i=1}^nX_i)= \frac{\eta^2}{n^2}\sum_{i=1}^n\frac{1}{\lambda^2} =
+\frac{\eta^2}{n^2}\frac{n}{\lambda^2}\\ 
+\mathbb{V}ar_\lambda(\tilde{T}_{1,\eta}) = \frac{\eta^2}{n\lambda^2}\]
+
+d'où
+
+\[R(\lambda,\tilde{T}_{1,\eta}) = (\frac{\eta-1}{\lambda})^2 + \frac{\eta^2}{n\lambda^2} 
+                                = \frac{n(\eta^2-2 \eta +1)}{n\lambda^2} + \frac{\eta^2}{n\lambda^2}\\
+R(\lambda,\tilde{T}_{1,\eta})   =\frac{(n+1)\eta^2-2 n\eta +n}{n\lambda^2} \]
+
+Pour que le nouveau risque soit inférieur à l'antécedent, il faut
+résoudre l'inéquation suivante:
+\[(n+1)\eta^2-2 n\eta +n < 1 ==> (n+1)\eta^2-2 n\eta + n-1 < 0\] qui
+possède comme solution: \[ \frac{n-1}{n+1}<\eta<1\] Pour notre
+echantillon: \[ \frac{55-1}{55+1}<\eta<1 \] Donc,
+\[\frac{27}{28}<\eta<1\]
+
+Ce résultat n'est pas en contradiction avec la question précédente
+puisque cet estimateur n'est pas efficace, il possède un biais non nul.
+C'est à dire qu'il y a une certaine region (celle retrouvée de
+\(\eta\)), où cet estimateur est meilleur que celui non pondéré par
+\(\eta\), mais son risque serait mauvais en dehors de cette région
+(graphique indicative enfin de l'exercice 2).
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\paragraph{Ex 2.6}\label{ex-2.6}
+
+    Soit \(m_\lambda = mediane(X)\) tel que
+\(\int_{-\infty}^{m_\lambda}\lambda\exp^{-\lambda x}.dx = 50\%\)
+==\textgreater{}
+\(\int_{0}^{m_\lambda}\lambda\exp^{-\lambda x}.dx = 50\%\)
+
+\$ - \exp\^{}\{-\lambda x\} \textbar{}\^{}m\_0 = 1/2 ==\textgreater{}
+\exp\textsuperscript{\{-\lambda .0\}-\exp}\{-\lambda .m\} =
+1/2\textbackslash{} 1-\exp\^{}\{-\lambda .m\} = 1/2 ==\textgreater{}
+\exp\^{}\{-\lambda .m\} = 1/2\textbackslash{} -\lambda .m = -ln(2)\$
+
+Donc, \[m_\lambda = \frac{\ln(2)}{\lambda}\] Pour que
+\(\tilde{T}_{1,\eta}(X)\) soit l'estimateur sans biais de la mediane, il
+faut que le bias : \(b_\lambda(m_\lambda,\tilde{T}_{1,\eta})\) soit nul.
+
+\[b_\lambda(m_\lambda,\tilde{T}_{1,\eta}) = \mathbb{E}_\lambda[\tilde{T}_{1,\eta}-m(\lambda)] = \frac{\eta}{n}\mathbb{E}_\lambda[\sum_{i=1}^nX_i] - \frac{\ln(2)}{\lambda} = \frac{\eta}{\lambda}- \frac{\ln(2)}{\lambda} = 0\]
+\[\eta - \ln(2) = 0\ ,\ \forall \lambda \neq 0\] Donc,\[\eta = \ln(2)\]
+
+    Calcule de la valeure de l'estimateur \(\tilde{T}_{1,\eta}(X)\) pour
+\(\eta = \ln{2}\) sur l'échantillon donné :
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}42}]:} \PY{k+kn}{import} \PY{n+nn}{math}
+         \PY{n}{T1\PYZus{}tilde} \PY{o}{=} \PY{n}{math}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{totalCosts}\PY{p}{)}\PY{o}{/}\PY{n}{totalCases}
+         \PY{n}{T1\PYZus{}tilde} \PY{o}{=} \PY{n}{math}\PY{o}{.}\PY{n}{floor}\PY{p}{(}\PY{n}{T1\PYZus{}tilde}\PY{o}{*}\PY{l+m+mi}{100}\PY{p}{)}\PY{o}{/}\PY{l+m+mi}{100}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{La médiane estimée de cette echantillon est}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZob{}T1\PYZus{}tilde:,\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{millions \PYZdl{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+La médiane estimée de cette echantillon est 503.45 millions \$
+
+    \end{Verbatim}
+
+    Calcule de la médiane empirique:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}43}]:} \PY{n}{median} \PY{o}{=} \PY{n+nb}{sorted}\PY{p}{(}\PY{n}{totalCosts}\PY{p}{)}\PY{p}{[}\PY{n}{n}\PY{o}{/}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{]}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{La médiane empirique de cette echantillon est}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZob{}median:,\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{millions \PYZdl{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+La médiane empirique de cette echantillon est 89.9 millions \$
+
+    \end{Verbatim}
+
+    \textbf{Comparaison}
+
+La moyenne empirique est désormais plus petite que celle estimée, ce qui
+est possible puisque l'echantillon de travail (n=55) n'est pas très
+longue, et il se peut qu'on ne voit pas la convergence. Donc, ces deux
+médianes seront plus proches plus que n augmente.
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\paragraph{Ex 2.7}\label{ex-2.7}
+
+    Calcul du risque quadratique de \(T_1(X)\):
+\(R(\lambda, T_1) = EQM(\lambda, T_1) = \mathbb{V}ar_\lambda(T_1) = \frac{1}{n\lambda^2}\)
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}44}]:} \PY{n}{risqueT1} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{/}\PY{p}{(}\PY{n}{n}\PY{o}{*}\PY{n}{lambdaN}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{le risque quadratique sous T1 est}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZob{}risqueT1:,\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+le risque quadratique sous T1 est 9,592.082057099926
+
+    \end{Verbatim}
+
+    Calcul du risque quadratique de \(\tilde{T}_{1,\eta}(X)\):
+
+\(R(\lambda, \tilde{T}_{1,\eta}) = EQM(\lambda, \tilde{T}_{1,\eta}) = \mathbb{V}ar_\lambda(\tilde{T}_{1,\eta}) = \frac{(n+1)\eta^2 -2n\eta+n}{n\lambda^2}\)
+pour \(\eta = \ln(2)\)
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}45}]:} \PY{n}{eta} \PY{o}{=} \PY{n}{math}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}
+         \PY{n}{risqueT1tilde} \PY{o}{=} \PY{p}{(}\PY{p}{(}\PY{n}{n}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{n}{eta}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{n}\PY{o}{*}\PY{n}{eta} \PY{o}{+}\PY{n}{n}\PY{p}{)}\PY{o}{/}\PY{p}{(}\PY{n}{n}\PY{o}{*}\PY{n}{lambdaN}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{le risque quadratique sous T1 tilde est}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZob{}risqueT1tilde:,\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+le risque quadratique sous T1 tilde est 54,283.308555590236
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}46}]:} \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{La difference est}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{risqueT1tilde} \PY{o}{\PYZhy{}} \PY{n}{risqueT1}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+La difference est 44691.22649849031
+
+    \end{Verbatim}
+
+    On note que le risque quadratique de \(T_1\) est meilleur que
+\(\tilde{T}_1\) et cela est prévisible car \(\eta\) est hors du région
+\$ 27/28 \textless{} \eta \textless{} 1\$
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}47}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{math}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZlt{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+m+mi}{27}\PY{o}{/}\PY{l+m+mi}{28}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+0.6931471805599453 < 0.9642857142857143
+
+    \end{Verbatim}
+
+    La variation du risque quadratique de \(T_1(X)\) et de
+\(\tilde{T}_{1,\eta}(X)\) en fonction de n sera:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}48}]:} \PY{n}{nVect} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{115}\PY{p}{,}\PY{l+m+mi}{1000}\PY{p}{)}
+         \PY{n}{risqueT1VectN} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{/}\PY{p}{(}\PY{n}{nVect}\PY{o}{*}\PY{n}{lambdaN}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}
+         \PY{n}{risqueT1tildeVectN} \PY{o}{=} \PY{p}{(}\PY{p}{(}\PY{n}{nVect}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{n}{eta}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{nVect}\PY{o}{*}\PY{n}{eta} \PY{o}{+}\PY{n}{nVect}\PY{p}{)}\PY{o}{/}\PY{p}{(}\PY{n}{nVect}\PY{o}{*}\PY{n}{lambdaN}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}
+         \PY{n}{rmin} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{min}\PY{p}{(}\PY{n}{risqueT1VectN}\PY{p}{)}
+         \PY{n}{mask} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{risqueT1VectN}\PY{p}{)} \PY{o}{==} \PY{n}{rmin}
+         \PY{n}{color} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{where}\PY{p}{(}\PY{n}{mask}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{yellow}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{green}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{rmin} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{min}\PY{p}{(}\PY{n}{risqueT1tildeVectN}\PY{p}{)}
+         \PY{n}{mask} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{risqueT1tildeVectN}\PY{p}{)} \PY{o}{==} \PY{n}{rmin}
+         \PY{n}{colorT} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{where}\PY{p}{(}\PY{n}{mask}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{red}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{blue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Risque}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Population n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Le risque est strictement décroissant pour n croissante.}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{nVect}\PY{p}{,}\PY{n}{risqueT1tildeVectN}\PY{p}{,} \PY{n}{label} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{T1 tilde}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{dessin}\PY{o}{=}\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{nVect}\PY{p}{,}\PY{n}{risqueT1VectN}\PY{p}{,}\PY{n}{label} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{T1}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{gca}\PY{p}{(}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{=}\PY{n}{ax}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{loc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{best}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{frameon}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Le risque est strictement décroissant pour n croissante.
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_53_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Donc \(T_1\) est meilleure que \(\tilde{T}_1\) pour les grandes
+echantillons.
+
+    EXTRA:
+
+    Pour n fixe sur 55, on étudie la variation du rique en fonction de
+\(\eta\):
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}49}]:} \PY{n}{etaVect} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mf}{0.91}\PY{p}{,}\PY{l+m+mf}{1.05}\PY{p}{,}\PY{l+m+mi}{40}\PY{p}{)}
+         \PY{n}{risqueVect} \PY{o}{=} \PY{p}{(}\PY{p}{(}\PY{l+m+mi}{55}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{n}{etaVect}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{l+m+mi}{55}\PY{o}{*}\PY{n}{etaVect} \PY{o}{+}\PY{l+m+mi}{55}\PY{p}{)}\PY{o}{/}\PY{p}{(}\PY{n}{n}\PY{o}{*}\PY{n}{lambdaN}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}
+         \PY{n}{rmin} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{min}\PY{p}{(}\PY{n}{risqueVect}\PY{p}{)}
+         \PY{n}{mask} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{risqueVect}\PY{p}{)} \PY{o}{==} \PY{n}{rmin}
+         \PY{n}{color} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{where}\PY{p}{(}\PY{n}{mask}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{red}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{blue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Risque}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{eta\PYZdl{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Le minmum risque est pour eta =}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{etaVect}\PY{p}{[}\PY{n+nb}{int}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{where}\PY{p}{(}\PY{n}{risqueVect}\PY{o}{==}\PY{n}{rmin}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{]}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Dans ce cas, le risque est}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{rmin}\PY{p}{)}
+         \PY{n}{dessin}\PY{o}{=}\PY{n}{plt}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{etaVect}\PY{p}{,}\PY{n}{risqueVect}\PY{p}{,}\PY{n}{color}\PY{o}{=}\PY{n}{color}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{etaVect}\PY{p}{,} \PY{p}{[}\PY{n}{risqueT1}\PY{p}{]}\PY{o}{*}\PY{n+nb}{len}\PY{p}{(}\PY{n}{etaVect}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Le minmum risque est pour eta = 0.9817948717948718
+Dans ce cas, le risque est 9420.859923843498
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}49}]:} [<matplotlib.lines.Line2D at 0x2175f9aabe0>]
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_57_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\subsubsection{\texorpdfstring{\[EXERCICE\ 3\]}{EXERCICE\textbackslash{} 3}}\label{exercice-3}
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\paragraph{Ex 3.1}\label{ex-3.1}
+
+    Hypothèse nulle \(H_0\): le coût moyen d'un accident est inférieur à un
+milliard de dollars
+
+Hypothèse alternative \(H_1\): le coût moyen d'un accident est supérieur
+ou égale à un milliard de dollars
+
+Donc, \[H_0: 1/\lambda_0 < 1,000\] et \[H_1: 1/\lambda_1 \geq 1,000\]
+
+en tenant compte que l'unité de coûts est le million 2013US\$
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\paragraph{Ex 3.2}\label{ex-3.2}
+
+    En se basant sur le principe de Neyman-Pearson, on calcule le rapport de
+vraisemblance résultant de notre hypothèse :
+
+\[
+   Z_{\lambda 0,\lambda 1}(X) = \frac{\mathbb{P}_{\lambda1}(X|H_1)}{\mathbb{P}_{\lambda0}(X|H_0)}
+                              = \frac{f(X_{1:n})}{f(X_{1:n})}\\
+                              = \frac{\prod_{i=1}^n f(X_i, \lambda_1)}{\prod_{i=1}^n f(X_i, \lambda_0)}\\
+                              = \frac{\prod_{i=1}^n \lambda_1\exp{-\lambda_1 X_i}}{\prod_{i=1}^n \lambda_0\exp{-\lambda_0 X_i}}\\
+                              =(\frac{\lambda_1}{\lambda_0})^n\frac{\exp^{-\sum_{i=1}^n \lambda_1 X_i}}{\exp^{-\sum_{i=1}^n \lambda_0 X_i}}\\
+Z_{\lambda 0,\lambda 1}(X) = (\frac{\lambda_1}{\lambda_0})^n \exp^{-\sum_{i=1}^n (\lambda_1-\lambda_0) X_i}
+\] Or, \(\lambda_1 < \lambda_0\), donc \(Z_{\lambda 0,\lambda 1}(X)\)
+qui ne depend que du vecteur X, est strictement croissante.
+
+Donc, le teste uniformément le plus puissant (U.P.P) est donné par
+l'inégalité : \[ Z_{\lambda 0,\lambda 1}(X) > C \] où \(C\) est donnée
+par l'égalité : \[ \mathbb{P}(Z_{\lambda 0,\lambda 1}(X) > C) = \alpha\]
+où \(\alpha\) est le niveau de signification voulu du teste.
+
+En utilisant la statistique de l'exercice \(T_1(X)\), on peut trouver la
+région de rejet de ce test.
+
+\textbf{Donc, on rejette \(H_0\) pour: \(T_1(X) > C'\)}
+\[ \mathbb{P}( T_1(X) > C') = \alpha\\ \mathbb{P}( \frac{1}{n}\sum^n_{i=1}X_i > C') = \alpha\\
+ \mathbb{P}( \frac{1}{n}\sum^n_{i=1}X_i \leq C') = 1 - \alpha\\
+ \mathbb{P}( \sum^n_{i=1}X_i \leq nC') = 1 - \alpha
+\] Donc, en posant \(q_{1-\alpha}\) le quantile de la loi de
+distribution de la somme des \(Xi\), on obtient:
+
+\[C' = \frac{q_{1-\alpha}}{n}\]
+
+Or, la somme des exponentielles suit une loi \(\Gamma(k,\theta)\) car:
+
+Soit \(X_{1:n}\) un vecteur de v.a. qui suient la loi exponentielle
+\(\varepsilon(\lambda)\), donc
+\[f(X_{1:n}) = \prod_{i=1}^n f(X^i)\ \ \ where\ \ \  X^i \sim \varepsilon\ (\lambda)\]
+En fonctions caractéristiques et d'après la donnée du Mini-Projet, et
+puisque \$\Phi\emph{\{X+Y\}(t)=\Phi}\{X\}(t).\Phi\_Y(t) \$ on peut
+écrire:
+\[ \Phi_{\sum X}(t) = \prod_{i=1}^n \frac{1}{1-\frac{it}{\lambda}} = \frac{1}{(1-\frac{it}{\lambda})^n}\]
+En posant \(\theta = \frac{1}{\lambda}\), on obtient:
+\[\Phi_X(t)= \frac{1}{(1-it\theta)^n}\] On déduit donc que
+\(\sum^n_{i=1} X_i\) suit la loi gamma
+\(\Gamma(k= n,\theta = 1/\lambda)\)
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\paragraph{Ex 3.3}\label{ex-3.3}
+
+    Pour l'échantillon considéré, et pur \(\alpha = 0.05 = 5\%\):
+\[ C' = \frac{q_{1-\alpha}^\Gamma}{n} = \frac{q^\Gamma_{0.95}}{55}\] On
+utilisera la librairie stats de scipy pour trouver la valeur du quantile
+(on peut de même utiliser la fonction de repartition fournie de la loi
+Gamma).
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}50}]:} \PY{n}{c}\PY{o}{=} \PY{n}{stats}\PY{o}{.}\PY{n}{gamma}\PY{o}{.}\PY{n}{ppf}\PY{p}{(}\PY{l+m+mf}{0.95}\PY{p}{,} \PY{n}{a}\PY{o}{=}\PY{n}{n}\PY{p}{,} \PY{n}{scale} \PY{o}{=} \PY{l+m+mi}{1000}\PY{p}{)}\PY{o}{/}\PY{l+m+mi}{55}
+         \PY{n}{t1}\PY{o}{=} \PY{l+m+mi}{1}\PY{o}{/}\PY{n}{lambdaN}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{la valeur de C}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{ est}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{c}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{la valeur de T1 sur notre échantillon est}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{t1}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+la valeur de C' est 1231.6379811669046
+la valeur de T1 sur notre échantillon est 726.3363636363637
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}51}]:} \PY{k}{if} \PY{n}{t1} \PY{o}{\PYZgt{}} \PY{n}{c}\PY{p}{:}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{on rejette H0, notre hypothèse est falsifiée}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{k}{else}\PY{p}{:}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{on accepte H0, notre hypothèse est vérifiée}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+on accepte H0, notre hypothèse est vérifiée
+
+    \end{Verbatim}
+
+    Donc, on peut aﬃrmer que le coût moyen d'accident est inférieur à un
+milliard de dollars
+
+    Pour la p-valeur, elle est égale à :
+\[ P(T_1(X) < t_1 obtenue\ |\ H_0) \]
+
+or \(t_1\) obtenue \(= 726.336\) millionsUS\$
+
+donc, \[p\_valeur = P(T_1(X) <726.336 \ |\ H_0)\\
+p\_valeur=P[\ T_1(X) <726.336 \ |\ T_1(X) \sim \Gamma(55,1000/55)\ ]\\ 
+p\_valeur=\Gamma_{55,1000/55}(Z<726.336)
+\]
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}52}]:} \PY{n}{pvaleur}\PY{o}{=}\PY{n}{stats}\PY{o}{.}\PY{n}{gamma}\PY{o}{.}\PY{n}{pdf}\PY{p}{(}\PY{n}{t1}\PY{p}{,} \PY{n}{a} \PY{o}{=} \PY{n}{n}\PY{p}{,} \PY{n}{scale} \PY{o}{=} \PY{l+m+mi}{1000}\PY{o}{/}\PY{n}{n}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{la p\PYZhy{}valeur est de l}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{ordre de}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZob{}:.4\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{pvaleur}\PY{o}{*}\PY{l+m+mi}{100}\PY{p}{)}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZpc{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{p\PYZhy{}valeur =}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{pvaleur}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+la p-valeur est de l'ordre de 0.03226 \%
+p-valeur = 0.00032259476176334467
+
+    \end{Verbatim}
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\paragraph{Ex 3.4}\label{ex-3.4}
+
+    Comme on a juste démontré dans la question 3.2 que la somme des \(X_i\)
+suit la loi Gamma tel que :
+\[ \sum_{i=1}^n X_i \sim \Gamma(n, 1/\lambda)\] alors la statistique
+\(T_1(X)= \frac{1}{n}\sum_{i=1}^nX_i\) est telle que:
+\[ T_1 \sim \Gamma (k = n, \theta = \frac{1}{n\lambda})\] Dressons la
+densité de probabilité de \(T_1(X)\) pour un moyen de coût des accidents
+égale à 1 milliardsUS\$ = 1000 millionsUS\$, donc \(\lambda = 1/1000\):
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}53}]:} \PY{n}{theta} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{1000}
+         \PY{n}{x} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace} \PY{p}{(}\PY{l+m+mf}{0.0005}\PY{p}{,} \PY{l+m+mf}{0.0015}\PY{p}{,} \PY{l+m+mi}{500}\PY{p}{)} 
+         \PY{n}{y} \PY{o}{=} \PY{n}{stats}\PY{o}{.}\PY{n}{gamma}\PY{o}{.}\PY{n}{pdf}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{a}\PY{o}{=}\PY{n}{n}\PY{p}{,} \PY{n}{scale} \PY{o}{=} \PY{n}{theta}\PY{o}{/}\PY{n}{n}\PY{p}{)} 
+         \PY{n}{a}\PY{o}{=}\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{y\PYZhy{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{p}{(}\PY{l+s+sa}{r}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{alpha (k)=55, }\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{theta=1/1000[par million\PYZdl{}]\PYZdl{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_72_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Région de rejet:
+
+Elle est donné pour les abscisse au delà des quelles la surface de la
+distrubtion devient plus grande que 95\% de sa surface maximale.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}54}]:} \PY{n}{totalArea} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{trapz}\PY{p}{(}\PY{n}{y}\PY{p}{,} \PY{n}{dx}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{)}
+         \PY{n}{area} \PY{o}{=} \PY{l+m+mi}{0}
+         \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{0}
+         \PY{k}{while}\PY{p}{(}\PY{n}{area}\PY{o}{\PYZlt{}}\PY{n}{totalArea}\PY{o}{*}\PY{l+m+mf}{0.95} \PY{o+ow}{and} \PY{n}{i}\PY{o}{\PYZlt{}}\PY{n+nb}{len}\PY{p}{(}\PY{n}{y}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+             \PY{n}{area} \PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{trapz}\PY{p}{(}\PY{n}{y}\PY{p}{[}\PY{p}{:}\PY{n}{i}\PY{p}{]}\PY{p}{,} \PY{n}{dx}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{)}
+             \PY{n}{i}\PY{o}{+}\PY{o}{=}\PY{l+m+mi}{1}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{[}\PY{p}{:}\PY{n}{i}\PY{p}{]}\PY{p}{,}\PY{n}{y}\PY{p}{[}\PY{p}{:}\PY{n}{i}\PY{p}{]}\PY{p}{,}\PY{n}{x}\PY{p}{[}\PY{n}{i}\PY{p}{:}\PY{p}{]}\PY{p}{,}\PY{n}{y}\PY{p}{[}\PY{n}{i}\PY{p}{:}\PY{p}{]}\PY{p}{)}
+         \PY{n}{a}\PY{o}{=}\PY{n}{plt}\PY{o}{.}\PY{n}{fill\PYZus{}between}\PY{p}{(}\PY{n}{x}\PY{p}{[}\PY{n}{i}\PY{p}{:}\PY{p}{]}\PY{p}{,}\PY{n}{y}\PY{p}{[}\PY{n}{i}\PY{p}{:}\PY{p}{]}\PY{p}{,} \PY{n}{color} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{lime}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{area}\PY{o}{/}\PY{n}{totalArea}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}54}]:} 0.9503953058868064
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_74_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\paragraph{Ex 3.5}\label{ex-3.5}
+
+    La fonction de puissance d'un test est donnée par la probabilité que
+l'échantillon soit rejeté par le test en tant que \(H_0\) est fausse,
+celà est donné par:
+\[Puissance = \mathbb{P}(T_1 \in \bar{A}\ |\ H_1) = 1 - \mathbb{P}(T_1 \in A\ |\ H_1)\]
+Dans notre cas,
+\[Puissance = 1 - \mathbb{P}(T_1(X) < C'\ |\ H_1)\ \ \ /\ \ \ C' = 1231.638\]
+
+Or, sous \(H_1\), on a que \(\lambda \leq 1/1000\), donc pour la densité
+de probabilité de \(T_1\), \(\theta\) varie sur l'intervale ouvert
+{]}0,1000{[}
+
+Domc,
+\[Puissance (\lambda) = \Gamma_{n,\frac{1}{n\lambda}}((n,\lambda); Z < 1231.638)\]
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}55}]:} \PY{n}{n\PYZus{}vect} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{50}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{,} \PY{l+m+mi}{500}\PY{p}{,} \PY{l+m+mi}{100000}\PY{p}{]}
+         \PY{n}{scale} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mf}{0.01}\PY{p}{,}\PY{l+m+mi}{2000}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{)}
+         \PY{k}{for} \PY{n}{nb} \PY{o+ow}{in} \PY{n}{n\PYZus{}vect}\PY{p}{:}
+             \PY{n}{y5} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{stats}\PY{o}{.}\PY{n}{gamma}\PY{o}{.}\PY{n}{cdf}\PY{p}{(}\PY{n}{c}\PY{p}{,} \PY{n}{a}\PY{o}{=}\PY{n}{nb}\PY{p}{,} \PY{n}{scale}\PY{o}{=}\PY{n}{scale}\PY{o}{/}\PY{n}{nb}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{scale}\PY{p}{,} \PY{n}{y5}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{n}{nb}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_77_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    On remarque que plus qu'on augmente la longueur de l'echantillon, plus
+que la raideur de la fonction de puissance augmente, donc elle devient
+plus puissante.
+
+Les courbures indiquent que dans la zone de \(H_1\) cad \(1/\lambda\)
+\textless{} 1000, la puissance de test est presque nulle, ce qui indique
+des bonnes résultats auprès de ces tests.
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\paragraph{Ex 3.6}\label{ex-3.6}
+
+    La statistique \(T_1\) possède comme espérance
+\(\mathbb{E}(T_1,\lambda)=1/\lambda\) et variance
+\(\mathbb{V}ar(T_1,\lambda)=\frac{1}{n.\lambda^2}\).
+
+Or, le théorème central limite établit la convergence en loi de la somme
+d'une suite de variables aléatoires ayant leur espérance et variance
+connus, vers la loi normale.
+
+D'où on peut assimiler la variable \(T_1\) une loi de distribution
+Normale tel que:
+\[ T_1 \sim N\ (\ \mu = \mathbb{E}(T_1,\lambda), \sigma^2 = \mathbb{V}ar(T_1,\lambda)\ )\]
+
+Totalement écrite :
+\[ T_1 \sim N (\mu = \frac{1}{\lambda}, \sigma = \frac{1}{\lambda\sqrt{n}})\]
+
+Pour \(\lambda\) = 1 / 1000: (echelle par 1 million\$)
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}56}]:} \PY{n}{mu} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{1000}
+         \PY{n}{variance} \PY{o}{=} \PY{n}{mu}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{o}{/}\PY{l+m+mi}{55}
+         \PY{n}{sigma} \PY{o}{=} \PY{n}{math}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{variance}\PY{p}{)}
+         \PY{n}{x} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{n}{mu} \PY{o}{\PYZhy{}} \PY{l+m+mi}{5}\PY{o}{*}\PY{n}{sigma}\PY{p}{,} \PY{n}{mu} \PY{o}{+} \PY{l+m+mi}{5}\PY{o}{*}\PY{n}{sigma}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{stats}\PY{o}{.}\PY{n}{norm}\PY{o}{.}\PY{n}{pdf}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{mu}\PY{p}{,} \PY{n}{sigma}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_81_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \textbf{D'abord, on remarque la ressemblance entre les deux graphes de
+lois Gamma et Normale pour \(T_1\)}
+
+Test proposé : On adopte la même hypothèse de 3.1, et de la même façon
+expliquée en 3.2-3, et en adoptant encore la statistique \(T_1(X)\), le
+test revient à comparer: \[T_1(X) > C''\] où \(C''\) peut être calculer
+comme suit:
+\[ \mathbb{P}( T_1(X) > C'') = \alpha\\ \mathbb{P}(\frac{T_1(X)-\frac{1}{\lambda}}{\frac{1}{\sqrt{n}\lambda}} > k) = \alpha\ \ \ \ \ \ /\ \ \ \ k = \frac{C''-\frac{1}{\lambda}}{\frac{1}{\sqrt{n}\lambda}}
+\] On remarque que la partie gauche est une loi Normale centralisée et
+réduite, \$ Z \sim N(0,1)\$, alors: \[
+ \mathbb{P}( Z \leq k) = 1 - \alpha\\
+ \mathbb{P}( \sum^n_{i=1}X_i \leq nC') = 1 - \alpha
+\] Donc, en posant \(q_{1-\alpha}^N\) le quantile de la loi \(N(0,1)\),
+et pour \(\alpha = 0.05\), on obtient:
+
+\[k = q_{0.95}^{N(0,1)}\]
+
+    Résultats du test (programmatiquement):
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}57}]:} \PY{n}{esp} \PY{o}{=} \PY{l+m+mi}{1000}
+         \PY{n}{var} \PY{o}{=} \PY{n}{esp}\PY{o}{/}\PY{n}{math}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{n}\PY{p}{)}
+         \PY{n}{k}\PY{o}{=}\PY{n}{stats}\PY{o}{.}\PY{n}{norm}\PY{o}{.}\PY{n}{ppf}\PY{p}{(}\PY{l+m+mf}{0.95}\PY{p}{)}
+         \PY{n}{cs}\PY{o}{=}\PY{n}{k}\PY{o}{*}\PY{n}{var} \PY{o}{+} \PY{n}{esp}
+         \PY{k}{if} \PY{n}{t1} \PY{o}{\PYZgt{}} \PY{n}{cs}\PY{p}{:}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{on rejette H0, notre hypothèse est falsifiée}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{k}{else}\PY{p}{:}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{on accepte H0, notre hypothèse est vérifiée, car}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{t1}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZlt{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{c}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{Donc, on accepte H\PYZus{}0}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+on accepte H0, notre hypothèse est vérifiée, car 726.3363636363637 < 1231.6379811669046 
+Donc, on accepte H\_0
+
+    \end{Verbatim}
+
+    Donc, de même pour ce teste, on peut confirmer que le coût moyen des
+accidents est inférieur à 1 milliards de dollars américaines.
+
+    \section{FIN}\label{fin}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
