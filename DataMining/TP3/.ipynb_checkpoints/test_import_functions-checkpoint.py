@@ -1,6 +1,6 @@
 try:
 	from decision_functions import BuildDecisionTree
-	BuildDecisionTree()
+	t=BuildDecisionTree('data.csv', 5, 1)
 	print('BuildDeciosionTree loaded!')
 	print('----')
 except Exception as e:
@@ -8,7 +8,7 @@ except Exception as e:
 
 try:
 	from decision_functions import printDecisionTree
-	printDecisionTree()
+	printDecisionTree(t)
 	print('printDecisionTree loaded!')
 	print('----')
 except Exception as e:
@@ -16,15 +16,15 @@ except Exception as e:
 
 try:
 	from decision_functions import generalizationError
-	generalizationError()
-	print('generalizationError loaded!')
+	e=generalizationError(t)
+	print('generalizationError loaded!', e)
 	print('----')
 except Exception as e:
 	raise e
 
 try:
 	from decision_functions import pruneTree
-	pruneTree()
+	p=pruneTree(t)
 	print('pruneTree loaded!')
 	print('----')
 except Exception as e:
