@@ -1,6 +1,6 @@
-import numpy as np
-import pandas as pd
 def BuildDecisionTree(path, minNum, default):
+    import numpy as np
+    import pandas as pd
     df=pd.read_csv(path)
     df=df[:20]
     A=list(df.columns[:-1])

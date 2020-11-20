@@ -1,14 +1,13 @@
-import numpy as np
 import pandas as pd
 def BuildDecisionTree(path, minNum, default):
     df=pd.read_csv(path)
-    df=df[:20]
+    #df=df[:20]
     A=list(df.columns[:-1])
     classifier=df.columns[-1]
     D = df
     default = 0
     tree= createNode(D, A, "Root", 0, classifier, minNum, default)
-    continueTree(tree)
+    continueTree(tree, minNum, default)
     return tree
 
 def printDecisionTree(tree):
@@ -45,7 +44,7 @@ def generalizationError(tree, alpha):
     return error/len(tree["tree"])
     #return error, mistakes, complexity
 
-def pruneTree(root, classifier, alpha):
+def pruneTree(root, alpha):
     import copy
     root = copy.deepcopy(root)
     nodesByLevel=getTreeOrdered(root)
@@ -188,7 +187,7 @@ def createNode(D, A, nodeType, level, classifier, minNum=5, default = 1):
     node["gini"]=float(GINI(D,classifier))
     return node
 
-def continueTree(root):
+def continueTree(root, minNum, default):
     A = list(root["attributes"])
     D = root["tree"]
     classifier = root["classifier"]
@@ -200,5 +199,5 @@ def continueTree(root):
         left,right = split(D, attribute, value)
         root["left"]  = createNode(left , A, "Intermediate", root["level"]+1, classifier, minNum, default)
         root["right"] = createNode(right, A, "Intermediate", root["level"]+1, classifier, minNum, default)
-        continueTree(root["left"])
-        continueTree(root["right"])
+        continueTree(root["left"], minNum, default)
+        continueTree(root["right"], minNum, default)

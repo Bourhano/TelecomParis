@@ -1,3 +1,5 @@
+import numpy as np
+import pandas as pd
 try:
 	from decision_functions import BuildDecisionTree
 	t=BuildDecisionTree('data.csv', 5, 1)

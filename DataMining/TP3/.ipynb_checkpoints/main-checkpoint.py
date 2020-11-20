@@ -1,5 +1,3 @@
-import numpy as np
-import pandas as pd
 import decision_functions as d
 
 def main():
@@ -12,7 +10,7 @@ def main():
     error = d.generalizationError(tree, alpha)
     print("The generalization error is",error)
     
-    prunedTree = d.pruneTree(mytree, classifier, alpha)
-    errorPruned=d.generalizationError(prunedTree, alpha)
+    prunedTree = d.pruneTree(tree, alpha)
+    errorPruned = d.generalizationError(prunedTree, alpha)
     print("The generalization error of the pruned tree is",errorPruned,end="\n\n")
     d.printDecisionTree(prunedTree)
