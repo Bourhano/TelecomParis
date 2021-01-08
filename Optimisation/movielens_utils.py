@@ -49,7 +49,7 @@ def objective(P, Q0, R, mask, rho):
 
     val = np.sum(tmp ** 2)/2. + rho/2. * (np.sum(Q0 ** 2) + np.sum(P ** 2))
 
-    grad_P = - (Q0.T.dot( (R - Q0.dot(P)) * mask )) + rho * P
+    grad_P = - Q0.T.dot(tmp) + rho * P
 
     return val, grad_P
 
@@ -74,9 +74,9 @@ def total_objective(P, Q, R, mask, rho):
 
     val = np.sum(tmp ** 2)/2. + rho/2. * (np.sum(Q ** 2) + np.sum(P ** 2))
 
-    grad_P = 0  # todo
+    grad_P = - Q.T.dot(tmp) + rho * P
 
-    grad_Q = 0  # todo
+    grad_Q = - tmp.dot(P.T) + rho * Q
 
     return val, grad_P, grad_Q
 
