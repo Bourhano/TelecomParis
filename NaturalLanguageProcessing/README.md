@@ -1,0 +1,1 @@
+This directoory contains machine learning prjects. All work here is directed towards Text Mining and language generation.
